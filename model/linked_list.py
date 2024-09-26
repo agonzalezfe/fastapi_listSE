@@ -27,6 +27,18 @@ class LinkedList:
         newNode = Node(child)
         newNode.next = self.head
         self.head = newNode
+    def invertList(self):
+        if self.head == None or self.head.next == None :
+            return 'empty list or with one element in it'
+        prev = None
+        current = self.head
+
+        while current != None:
+            next = current.next
+            current.next = prev
+            prev = current
+            current = next
+        self.head = prev
     def insertPosition(self,child,position):
         newNode = Node(child)
         if position == 1:
@@ -43,18 +55,6 @@ class LinkedList:
             count +=1
         if position > count:
             raise Exception('the entered value is greater than the number of elements in the list')
-    def invertList(self):
-        if self.head == None or self.head.next == None :
-            return 'empty list or with one element in it'
-        prev = None
-        current = self.head
-
-        while current != None:
-            next = current.next
-            current.next = prev
-            prev = current
-            current = next
-        self.head = prev
     def deleteID(self,ide):
         tmp = self.head
         if self.head.child.id == ide:
@@ -74,12 +74,15 @@ class LinkedList:
             return 'empty list'
         if position == 1:
             self.head = self.head.next
-        count = 1
-        tmp = self.head
-        while count < position - 1:
-            tmp = tmp.next
-            count +=1
-        tmp.next = tmp.next.next
+
+
+        else:
+            count = 1
+            tmp = self.head
+            while count < position - 1:
+                tmp = tmp.next
+                count +=1
+            tmp.next = tmp.next.next
 
     def swapEnds(self):
         if self.head == None or self.head.next ==None:
