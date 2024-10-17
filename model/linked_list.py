@@ -102,21 +102,47 @@ class LinkedList:
         prev.next.next = None
         self.head = current
     def alternateByGender(self):
-        if self.head == None or self.head.next == None:
-            return 'empty list or with one element in it'
+        #must add the length attribute and incorporate in each method
+        '''if self.length <= 2:
+            return 'son menos de dos no se pueden mezclar'''
 
-        current = self.head
-        while current.next != None:
-            if current.child.gender == current.next.child.gender:
-                swap = current.next
+        boys = LinkedList()
+        girls = LinkedList()
 
-                while swap != None and swap.child.gender == current.child.gender:
-                    swap = swap.next
-                if swap != None:
-                    tmp = current.next.child
-                    current.next.child = swap.child
-                    swap.child = tmp
-            current = current.next
+        tmp = self.head
+        while tmp:
+            if tmp.child.gender.upper() == 'M':
+                boys.insert(tmp.child)
+
+            else:
+                girls.insert(tmp.child)
+
+            tmp = tmp.next
+
+        self.head = None
+        self.length = 0
+
+        boyNode = boys.head
+        girlNode = girls.head
+
+        while boyNode or girlNode:
+            if boyNode:
+                self.insert(boyNode.child)
+                boyNode = boyNode.next
+
+            if girlNode:
+                self.insert(girlNode.child)
+                girlNode = girlNode.next
+
+    def insert(self,child):
+        newNode = Node(child)
+        if self.head is None:
+            self.head = newNode
+        else:
+            tmp = self.head
+            while tmp.next:
+                tmp = tmp.next
+            tmp.next = newNode
 
 
 
@@ -167,9 +193,15 @@ if __name__ == '__main__':
     listSE.insertPosition(child8, 6)
     listSE.insertPosition(child9, 7)
     listSE.printList()
+    print('--------------listSE.insert---------')
+    child10 = Child('10','karen',10,'F')
+    listSE.insert(child10)
+    listSE.printList()
     print('-----------listSE.altenateByGender----------')
     listSE.alternateByGender()
     listSE.printList()
+
+
 
 
 
