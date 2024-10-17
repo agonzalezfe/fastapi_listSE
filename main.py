@@ -21,8 +21,7 @@ def add_child_at_position(position: int, child: ChildSchema):
     try:
         linked_list.list.insertBeginning(Child(**child.dict),position)
         return {'message': f'child added at position {position}'}
-    except :
-        raise HTTPException(status_code=400)
+
 @app.put('/children/reverse')
 def reverse_list():
     linked_list.invert_list()
@@ -32,16 +31,14 @@ def delete_child_by_id(id:str):
     try:
         linked_list.deleteID(id)
         return {'message': f'child deleted with id: {id}'}
-    except:
-        raise HTTPException(status_code=400)
+
 
 @app.delete('/children/position/{position}')
 def delete_child_position(position: int):
     try:
         linked_list.deletePosition(position)
         return {'message': f'child deleted at position: {position}'}
-    except:
-        raise HTTPException(status_code=400)
+
 @app.put('/children/swap-ends')
 def swap_ends():
     linked_list.swapEnds()

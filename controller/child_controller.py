@@ -1,4 +1,5 @@
-from model import LinkedList, Child
+from model.linked_list import LinkedList,Child
+
 
 class ChildController:
     def __init__(self):
@@ -25,6 +26,8 @@ class ChildController:
 
     def alternate_by_gender(self):
         self.list.alternateByGender()
+
+
 
     def print_list(self):
         self.list.printList()
